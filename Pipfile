@@ -12,6 +12,7 @@ Flask-SQLAlchemy = "*"
 Flask-Cors = "*"
 Flask-Migrate = "*"
 gunicorn = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
