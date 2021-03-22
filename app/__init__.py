@@ -13,6 +13,7 @@ def create_app():
     #for production
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    print(os.environ.get('DATABASE_URL'))
 
     # for local
     # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
