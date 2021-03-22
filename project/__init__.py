@@ -5,12 +5,14 @@ from .extensions import db
 from .models import DataModel
 
 from .routes.savings import savings
+import os
 
 def create_app(config_file='settings.py'):
     app = Flask(__name__)
-
-    app.config.from_pyfile(config_file)
-
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#     app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:8529454669@localhost:5432/ugproject"
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABSE_URL']
+    print(os.environ['DATABSE_URL'])
     db.init_app(app)
 
     app.register_blueprint(savings)

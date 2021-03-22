@@ -3,6 +3,10 @@ from flask import request,Blueprint
 from project.models import DataModel
 
 savings=Blueprint('savings',__name__)
+@savings.route('/data/health',methods=['GET'])
+def msg():
+        return{"msg":"healthy"}
+
 @savings.route('/data/show',methods=['GET'])
 def showsavings():
         savingsdata=db.session.query(DataModel)
