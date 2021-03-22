@@ -12,7 +12,7 @@ def create_app(config_file='settings.py'):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #     app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:8529454669@localhost:5432/ugproject"
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-    print(os.environ['DATABSE_URL'])
+    print(os.environ['DATABASE_URL'])
     db.init_app(app)
 
     app.register_blueprint(savings)
