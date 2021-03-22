@@ -16,5 +16,8 @@ def create_app(config_file='settings.py'):
     app.register_blueprint(savings)
 
     app.cli.add_command(create_tables)
-
+    @app.route('/',methods=['GET'])
+    def hello():
+         return {"msg":"working"}
+    
     return app
