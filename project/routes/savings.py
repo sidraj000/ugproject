@@ -1,8 +1,8 @@
-from .. import db
-from . import savings
-from flask import request
-from ..models import DataModel
+from project.extensions import db
+from flask import request,Blueprint
+from project.models import DataModel
 
+savings=Blueprint('savings',__name__)
 @savings.route('/data/show',methods=['GET'])
 def showsavings():
         savingsdata=db.session.query(DataModel)
