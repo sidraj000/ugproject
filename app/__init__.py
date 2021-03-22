@@ -11,12 +11,12 @@ def create_app():
     app.config['CORS_HEADERS'] = 'Content-Type'
     CORS(app)
     #for production
-    # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 
     # for local
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:8529454669@localhost:5432/ugproject"
+    # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:8529454669@localhost:5432/ugproject"
     
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -25,7 +25,7 @@ def create_app():
 
     from .savings import savings as savings_blueprint
     app.register_blueprint(savings_blueprint)
-
+    db.create_all()
  
 
     @app.route('/health', methods=['GET'])
