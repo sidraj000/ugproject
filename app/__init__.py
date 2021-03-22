@@ -25,8 +25,8 @@ def create_app():
 
     from .savings import savings as savings_blueprint
     app.register_blueprint(savings_blueprint)
-    with app.app_context():
-     db.create_all()
+    # with app.app_context():
+    #  db.create_all()
  
 
     @app.route('/health', methods=['GET'])
