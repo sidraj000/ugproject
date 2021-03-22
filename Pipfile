@@ -6,12 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-Flask = "*"
-Flask-SQLAlchemy = 
-gunicorn = "*"
+flask = "*"
+flask-sqlalchemy = "*"
 psycopg2 = "*"
-sqlalchemy = "*"
-flask-wtf = "*"
 
 [requires]
 python_version = "3.8"
