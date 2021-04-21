@@ -1,6 +1,8 @@
 from project.extensions import db
-from flask import request,Blueprint
+from flask import request,Blueprint,jsonify
 from project.models import DataModel
+from project.models import SensorData
+
 
 savings=Blueprint('savings',__name__)
 @savings.route('/data/health',methods=['GET'])
@@ -9,18 +11,17 @@ def msg():
 
 @savings.route('/data/show',methods=['GET'])
 def showsavings():
-        savingsdata=db.session.query(DataModel)
-        data={}
-        j=0
+        savingsdata=db.session.query(SensorData)
+        data=[]
         for i in savingsdata:
-             data[j]=("cordinate is "+i.cordinates)
-             j+=1
-        return data
+             data.append({"sensorId":i.device_id,"data":i.sData,"time":i.timestamp})
+        return jsonify(data)
 @savings.route('/data/add', methods=['POST'])
 def retiral_submission():
      data =  request.get_json(force=True)
-     cordinates=(data['Cordinate'])
-     newData = DataModel(cordinates=cordinates)
+     device_id=(data['DId'])
+     sData=(data['sData'])
+     newData = SensorData(device_id=device_id,sData=sData)
      db.session.add(newData)
      db.session.commit()
 
